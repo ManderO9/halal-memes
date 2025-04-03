@@ -2,17 +2,38 @@
 @model IndexModel
 
 <div>
-
     <div style="max-width: 600px; margin-left:auto; margin-right:auto;">
+        <div>halal memes aka social crap</div>
+        <div>if you are a muslim and want to laugh. welcome. you are in the right place.</div>
+
         @foreach(var post in Model.Posts)
         {
-            <div style="margin-left:auto; margin-right:auto;">
+            <div style="margin-left:auto; margin-right:auto;margin:32px 0;">
+                @if(post.Text is not null)
+                {
+                    <div>@post.Text</div>
+                }
+
                 @if(post.VideoPath is not null)
                 {
                     <video src="@post.VideoPath" style="width:100%; max-height:100vh;"  controls></video>
                 }
 
+                <div style="text-align:right;">@if(post.VideoPath is not null) { <sl-button>Download</sl-button>}</div>
+
             </div>
         }
     </div>
+
+    <div class="list-container"></div>
+    <sl-button>Click me</sl-button>
+
+    <script defer async>
+        var html = `<sl-button><sl-icon slot="prefix" name="gear"></sl-icon>Settings</sl-button><br>`;
+        var container = document.querySelector(".list-container");
+
+        for(var i=0; i<10; i++){
+            container.innerHTML += html;
+        }
+    </script>
 </div>

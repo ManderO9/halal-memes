@@ -11,6 +11,7 @@ public class IndexModel : PageModel
         Posts = [
             new ()
             {
+                Text = "Bro did him dirty.",
                 VideoPath = "/content/videos/bro-did-me-dirty.mp4"
             },
             new ()
