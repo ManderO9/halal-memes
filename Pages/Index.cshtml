@@ -2,38 +2,50 @@
 @model IndexModel
 
 <div>
-    <div style="max-width: 600px; margin-left:auto; margin-right:auto;">
-        <div>halal memes aka social crap</div>
-        <div>if you are a muslim and want to laugh. welcome. you are in the right place.</div>
+    <div style="max-width: 600px;" class="mx-auto">
+        <div class="mx-3 mt-4 mb-3 fs-4 text-info">halal memes aka social crap</div>
+        <div class="mx-3 mb-4 fs-6">if you are a muslim and want to laugh. welcome. you are in the right place.</div>
 
         @foreach(var post in Model.Posts)
         {
-            <div style="margin-left:auto; margin-right:auto;margin:32px 0;">
+            <div class="mx-auto mt-5">
                 @if(post.Text is not null)
                 {
-                    <div>@post.Text</div>
+                    <div class="mx-3 mb-3 fs-6">@post.Text</div>
                 }
 
                 @if(post.VideoPath is not null)
                 {
-                    <video src="@post.VideoPath" style="width:100%; max-height:100vh;"  controls></video>
+                    <video src="@post.VideoPath" style="width:100%; max-height:100vh;" controls></video>
                 }
 
-                <div style="text-align:right;">@if(post.VideoPath is not null) { <sl-button>Download</sl-button>}</div>
+                <div class="text-end py-2">
+
+                    @if(post.VideoPath is not null)
+                    {
+                        <sl-tooltip content="Download Video">
+                            <sl-button variant="primary" class="me-3" href="@post.VideoPath" download>
+                                <sl-icon slot="suffix" name="download"></sl-icon>
+                                Download
+                            </sl-button>
+                        </sl-tooltip>
+
+                        <script>
+                            var copy = (relativeUrl) => {
+                                navigator.clipboard.writeText(new URL(relativeUrl, document.baseURI).href);
+                            }
+                        </script>
+
+                        <sl-tooltip content="Copy Video Link">
+                            <sl-button variant="primary" class="me-3" onclick="copy('@post.VideoPath');this.variant='success';this.children[0].name='check2-all';">
+                                <sl-icon slot="suffix" name="send-fill"></sl-icon>
+                                Share
+                            </sl-button>
+                        </sl-tooltip>
+                    }
+                </div>
 
             </div>
         }
     </div>
-
-    <div class="list-container"></div>
-    <sl-button>Click me</sl-button>
-
-    <script defer async>
-        var html = `<sl-button><sl-icon slot="prefix" name="gear"></sl-icon>Settings</sl-button><br>`;
-        var container = document.querySelector(".list-container");
-
-        for(var i=0; i<10; i++){
-            container.innerHTML += html;
-        }
-    </script>
 </div>

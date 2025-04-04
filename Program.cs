@@ -36,7 +36,6 @@ app.MapGet("/generate", async (HttpContext context, IEnumerable<EndpointDataSour
     // List of endpoints to get
     var endpoints = new List<string>{
         "/index",
-        "/nigga/what",
     };
 
     // Get output folder to write to

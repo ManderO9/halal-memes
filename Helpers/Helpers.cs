@@ -1,4 +1,7 @@
-﻿namespace HalalMemes;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
+
+namespace HalalMemes;
 
 public static class Helpers
 {
